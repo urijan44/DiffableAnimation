@@ -67,6 +67,11 @@ class Storage {
         return .black
     }
   }
+
+  func deleteItem(_ developer: Developer) {
+    guard let index = developers.firstIndex(of: developer) else { return }
+    developers.remove(at: index)
+  }
 }
 
 

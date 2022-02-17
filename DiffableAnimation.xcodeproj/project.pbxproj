@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A02059C27BEA98F00A2AFCD /* DiffableTaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A02059B27BEA98F00A2AFCD /* DiffableTaleView.swift */; };
 		8A2240EA27BD53A200E30E6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2240E927BD53A200E30E6B /* AppDelegate.swift */; };
 		8A2240EC27BD53A200E30E6B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2240EB27BD53A200E30E6B /* SceneDelegate.swift */; };
 		8A2240EE27BD53A200E30E6B /* SearchDeveloperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2240ED27BD53A200E30E6B /* SearchDeveloperViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A02059B27BEA98F00A2AFCD /* DiffableTaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiffableTaleView.swift; sourceTree = "<group>"; };
 		8A2240E627BD53A200E30E6B /* DiffableAnimation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiffableAnimation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2240E927BD53A200E30E6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A2240EB27BD53A200E30E6B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A02059A27BEA97D00A2AFCD /* DiffableTableView */ = {
+			isa = PBXGroup;
+			children = (
+				8A02059B27BEA98F00A2AFCD /* DiffableTaleView.swift */,
+			);
+			path = DiffableTableView;
+			sourceTree = "<group>";
+		};
 		8A2240DD27BD53A200E30E6B = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +83,7 @@
 				8A2240E927BD53A200E30E6B /* AppDelegate.swift */,
 				8A2240EB27BD53A200E30E6B /* SceneDelegate.swift */,
 				8AEBE9B227BE6E9F00B22EA9 /* IndexTableView.swift */,
+				8A02059A27BEA97D00A2AFCD /* DiffableTableView */,
 				8AEBE9B427BE713100B22EA9 /* SimpleTableView */,
 				8A65566827BE984000525200 /* CollectionView */,
 				8A65566A27BE984F00525200 /* ReuseableView */,
@@ -104,6 +115,7 @@
 		8A65566A27BE984F00525200 /* ReuseableView */ = {
 			isa = PBXGroup;
 			children = (
+				8AEBE9B527BE714200B22EA9 /* SimpleCell.swift */,
 				8AEBE99E27BD55DF00B22EA9 /* ProfileCardCell.swift */,
 				8AEBE9A027BD562B00B22EA9 /* ProfileCard.swift */,
 				8AEBE9AE27BE0C1400B22EA9 /* CardDetailView.swift */,
@@ -123,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				8AEBE9B027BE6DB800B22EA9 /* SimpleTableView.swift */,
-				8AEBE9B527BE714200B22EA9 /* SimpleCell.swift */,
 			);
 			path = SimpleTableView;
 			sourceTree = "<group>";
@@ -209,6 +220,7 @@
 				8A2240EC27BD53A200E30E6B /* SceneDelegate.swift in Sources */,
 				8AEBE99F27BD55DF00B22EA9 /* ProfileCardCell.swift in Sources */,
 				8AEBE9AF27BE0C1400B22EA9 /* CardDetailView.swift in Sources */,
+				8A02059C27BEA98F00A2AFCD /* DiffableTaleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

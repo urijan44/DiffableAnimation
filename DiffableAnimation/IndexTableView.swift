@@ -11,7 +11,8 @@ final class IndexTableView: UITableViewController {
 
   let menu: [String] = [
     "Simple Table View",
-    "Complex Collection View"
+    "Complex Collection View",
+    "Diffable Table View"
   ]
 
   override func viewDidLoad() {
@@ -37,6 +38,9 @@ final class IndexTableView: UITableViewController {
         navigationController?.pushViewController(controller, animated: true)
       case 1:
         let controller = SearchDeveloperViewController()
+        navigationController?.pushViewController(controller, animated: true)
+      case 2:
+        let controller = DiffableTableView()
         navigationController?.pushViewController(controller, animated: true)
       default:
         return

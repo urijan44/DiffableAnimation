@@ -17,33 +17,35 @@ final class SimpleTableView: UITableViewController {
 
   let storage = Storage.shared
 
+  lazy var menuItems: [UIAction] = [
+    UIAction(title: "iOS", image: nil, identifier: nil, handler: { _ in
+      self.filterd = .iOS
+    }),
+    UIAction(title: "Android", image: nil, identifier: nil, handler: { _ in
+      self.filterd = .android
+    }),
+    UIAction(title: "Backend", image: nil, identifier: nil, handler: { _ in
+      self.filterd = .backend
+    }),
+    UIAction(title: "FrontEnd", image: nil, identifier: nil, handler: { _ in
+      self.filterd = .frontend
+    }),
+    UIAction(title: "None", image: nil, identifier: nil, state: .on, handler: { _ in
+      self.filterd = .none
+    }),
+
+  ]
+
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.register(SimpleCell.self, forCellReuseIdentifier: SimpleCell.reuseIdentifier)
+    navigationBarConfigure()
+  }
 
-    let menuItems: [UIAction] = [
-      UIAction(title: "iOS", image: nil, identifier: nil, handler: { _ in
-        self.filterd = .iOS
-      }),
-      UIAction(title: "Android", image: nil, identifier: nil, handler: { _ in
-        self.filterd = .android
-      }),
-      UIAction(title: "Backend", image: nil, identifier: nil, handler: { _ in
-        self.filterd = .backend
-      }),
-      UIAction(title: "FrontEnd", image: nil, identifier: nil, handler: { _ in
-        self.filterd = .frontend
-      }),
-      UIAction(title: "None", image: nil, identifier: nil, state: .on, handler: { _ in
-        self.filterd = .none
-      }),
-
-    ]
-
+  private func navigationBarConfigure() {
     let filterBarButton = UIBarButtonItem(systemItem: .compose, primaryAction: nil, menu: .init(title: "", image: nil, identifier: nil, options: .singleSelection, children: menuItems))
     let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addDeveloper))
     navigationItem.rightBarButtonItems = [filterBarButton, addButton]
-
   }
 
   private func tableViewFiltering() {
@@ -84,7 +86,10 @@ final class SimpleTableView: UITableViewController {
     tableView.insertRows(at: [indexPath], with: .right)
     tableView.endUpdates()
   }
+}
 
+//MARK: - DataSource
+extension SimpleTableView {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     storage.filteredByMajor(major: filterd).count
   }
@@ -97,7 +102,10 @@ final class SimpleTableView: UITableViewController {
 
     return cell
   }
+}
 
+//MARK: - Delegate
+extension SimpleTableView {
   override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     if editingStyle == .delete {
       tableView.beginUpdates()
@@ -116,7 +124,4 @@ final class SimpleTableView: UITableViewController {
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
   }
-
-
 }
-
