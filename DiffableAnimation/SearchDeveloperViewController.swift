@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SearchDeveloperViewController: UIViewController {
 
@@ -34,6 +35,7 @@ class SearchDeveloperViewController: UIViewController {
     view.addSubview(collectionView)
     collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
     collectionView.register(ProfileCardCell.self, forCellWithReuseIdentifier: ProfileCardCell.identifier)
+    collectionView.delegate = self
     configureDataSource()
     configureSnapshot()
     start()
@@ -68,6 +70,13 @@ class SearchDeveloperViewController: UIViewController {
 
 }
 
+extension SearchDeveloperViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    let developer = dataSource.itemIdentifier(for: indexPath)!
+    let hosting = UIHostingController(rootView: CardDetailView(developer: developer))
+    navigationController?.pushViewController(hosting, animated: true)
+  }
+}
 
 extension SearchDeveloperViewController {
   @objc func toggle() {
