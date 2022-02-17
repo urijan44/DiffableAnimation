@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class DiffableTableView: UITableViewController {
 
@@ -116,5 +117,8 @@ extension DiffableTableView {
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+    guard let developer = dataSource.itemIdentifier(for: indexPath) else { return }
+    let hosting = UIHostingController(rootView: CardDetailView(developer: developer))
+    navigationController?.pushViewController(hosting, animated: true)
   }
 }

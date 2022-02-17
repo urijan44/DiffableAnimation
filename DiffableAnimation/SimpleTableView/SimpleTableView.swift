@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 final class SimpleTableView: UITableViewController {
 
@@ -123,5 +124,9 @@ extension SimpleTableView {
 
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+
+    let developer = storage.filteredByMajor(major: filterd)[indexPath.row]
+    let hosting = UIHostingController(rootView: CardDetailView(developer: developer))
+    navigationController?.pushViewController(hosting, animated: true)
   }
 }
