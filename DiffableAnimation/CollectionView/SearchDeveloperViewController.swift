@@ -29,6 +29,7 @@ class SearchDeveloperViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     collcetionViewConfigure()
+    collectionView.backgroundColor = .systemIndigo
   }
 
   private func collcetionViewConfigure() {
@@ -75,6 +76,9 @@ extension SearchDeveloperViewController: UICollectionViewDelegate {
     let developer = dataSource.itemIdentifier(for: indexPath)!
     let hosting = UIHostingController(rootView: CardDetailView(developer: developer))
     navigationController?.pushViewController(hosting, animated: true)
+
+    
+
   }
 }
 
@@ -108,6 +112,6 @@ extension SearchDeveloperViewController {
   }
 
   func start() {
-    Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(toggle), userInfo: nil, repeats: true)
+    Timer.scheduledTimer(timeInterval: 1.7, target: self, selector: #selector(toggle), userInfo: nil, repeats: true)
   }
 }

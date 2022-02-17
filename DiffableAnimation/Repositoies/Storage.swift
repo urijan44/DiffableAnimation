@@ -35,6 +35,22 @@ class Storage {
     }
   }
 
+  var sortedDevelopers: [Developer] {
+    developers.sorted { lhs, rhs in
+      lhs.major.rawValue < rhs.major.rawValue
+    }
+  }
+
+  func filteredByMajor(major: Developer.Major) -> [Developer] {
+    if major == .none {
+      return developers
+    } else {
+      return developers.filter { developer in
+        developer.major == major
+      }
+    }
+  }
+
   static func signaturColor(major: Developer.Major) -> Color {
     switch major {
       case .iOS:
@@ -47,6 +63,8 @@ class Storage {
         return Color("Kotlin")
       case .unity:
         return Color("Unity")
+      case .none:
+        return .black
     }
   }
 }

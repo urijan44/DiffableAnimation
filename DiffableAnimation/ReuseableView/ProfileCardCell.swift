@@ -17,11 +17,14 @@ final class ProfileCardCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     addSubview(card.view)
+    backgroundColor = .clear
+    card.view.backgroundColor = .clear
     card.view.translatesAutoresizingMaskIntoConstraints = false
     NSLayoutConstraint.activate([
       card.view.leadingAnchor.constraint(equalTo: leadingAnchor),
       card.view.trailingAnchor.constraint(equalTo: trailingAnchor),
-      card.view.topAnchor.constraint(equalTo: topAnchor)
+      card.view.topAnchor.constraint(equalTo: topAnchor),
+      card.view.bottomAnchor.constraint(equalTo: bottomAnchor)
     ])
   }
 

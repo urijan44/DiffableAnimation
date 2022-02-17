@@ -40,17 +40,17 @@ class Developer: Hashable {
     case frontend
     case android
     case unity
-
+    case none
   }
 
   var id = UUID().uuidString
-  let name: String
-  let major: Major
-  let language: [Language]
-  let carrer: String
+  var name: String
+  var major: Major
+  var language: [Language]
+  var carrer: String
   var searcable: Bool = true
 
-  init(name: String = "", major: Major = .iOS, language: [Language] = [], carrer: String = "") {
+  init(name: String = "unknown", major: Major = .none, language: [Language] = [], carrer: String = "무소속") {
     self.name = name
     self.major = major
     self.language = language
