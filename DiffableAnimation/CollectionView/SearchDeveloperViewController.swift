@@ -112,6 +112,6 @@ extension SearchDeveloperViewController {
   }
 
   func start() {
-    Timer.scheduledTimer(timeInterval: 1.7, target: self, selector: #selector(toggle), userInfo: nil, repeats: true)
+    Timer.scheduledTimer(timeInterval: 1.4, target: self, selector: #selector(toggle), userInfo: nil, repeats: true)
   }
 }
