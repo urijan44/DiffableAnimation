@@ -8,11 +8,29 @@
 import UIKit
 import SwiftUI
 
+enum Section {
+  case main
+}
+
+final class ResumeDataSource: UITableViewDiffableDataSource<Section, Developer> {
+
+  var deleteRow: ((Developer) -> Void)?
+
+  override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    true
+  }
+
+  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    if editingStyle == .delete {
+      guard let deleteItem = self.itemIdentifier(for: indexPath) else { return }
+
+      deleteRow?(deleteItem)
+    }
+  }
+}
+
 final class DiffableTableView: UITableViewController {
 
-  enum Section {
-    case main
-  }
 
   var filterd: Developer.Major = .none {
     didSet {
@@ -21,7 +39,7 @@ final class DiffableTableView: UITableViewController {
   }
 
   let storage = Storage.shared
-  var dataSource: UITableViewDiffableDataSource<Section, Developer>!
+  var dataSource: ResumeDataSource!
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -80,16 +98,23 @@ final class DiffableTableView: UITableViewController {
     storage.developers.append(developer)
     configureSnapshot()
   }
+
+  private func deleteTableView(develoer: Developer) {
+    storage.deleteItem(develoer)
+    configureSnapshot()
+  }
 }
 
 //MARK: - DataSource
 extension DiffableTableView {
   func configureDataSource() {
-    dataSource = UITableViewDiffableDataSource<Section, Developer>(tableView: tableView, cellProvider: { tableView, indexPath, developer in
+    dataSource = ResumeDataSource(tableView: tableView, cellProvider: { tableView, indexPath, developer in
       let cell = tableView.dequeueReusableCell(withIdentifier: SimpleCell.reuseIdentifier, for: indexPath) as! SimpleCell
       cell.cellConfigure(developer: developer)
       return cell
     })
+
+    dataSource.deleteRow = deleteTableView(develoer:)
   }
 
   func configureSnapshot() {
@@ -103,13 +128,6 @@ extension DiffableTableView {
 
 //MARK: - delegate
 extension DiffableTableView {
-  override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    if editingStyle == .delete {
-      guard let deleteItem = dataSource.itemIdentifier(for: indexPath) else { return }
-      storage.deleteItem(deleteItem)
-      configureSnapshot()
-    }
-  }
 
   override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
     .delete
