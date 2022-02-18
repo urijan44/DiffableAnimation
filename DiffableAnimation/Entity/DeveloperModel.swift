@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Developer: Hashable {
+final class Developer: Hashable {
   static func == (lhs: Developer, rhs: Developer) -> Bool {
     lhs.id == rhs.id
   }

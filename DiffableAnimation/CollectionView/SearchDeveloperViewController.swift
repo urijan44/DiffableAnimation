@@ -50,11 +50,11 @@ class SearchDeveloperViewController: UIViewController {
     }
   }
 
-  func configureSnapshot() {
+  func configureSnapshot(animatingDifferences: Bool = true) {
     var snapshot = NSDiffableDataSourceSnapshot<Section, Developer>()
     snapshot.appendSections([.main])
     snapshot.appendItems(storage.filteredDevelopers, toSection: .main)
-    dataSource.apply(snapshot, animatingDifferences: true)
+    dataSource.apply(snapshot, animatingDifferences: animatingDifferences)
   }
 
   func createLayout() -> UICollectionViewLayout {
@@ -76,9 +76,6 @@ extension SearchDeveloperViewController: UICollectionViewDelegate {
     let developer = dataSource.itemIdentifier(for: indexPath)!
     let hosting = UIHostingController(rootView: CardDetailView(developer: developer))
     navigationController?.pushViewController(hosting, animated: true)
-
-    
-
   }
 }
 
@@ -108,7 +105,6 @@ extension SearchDeveloperViewController {
           self.configureSnapshot()
         }
     }
-
   }
 
   func start() {

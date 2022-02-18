@@ -16,6 +16,7 @@ final class ProfileCardCell: UICollectionViewCell {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
+    
     addSubview(card.view)
     backgroundColor = .clear
     card.view.backgroundColor = .clear
